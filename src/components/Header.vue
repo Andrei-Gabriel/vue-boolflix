@@ -4,6 +4,7 @@
             <img src="../assets/img/logo_large.png" alt="">
             <form>
                 <input type="text" placeholder="Cerca qualcosa da guardare">
+                <button class="search-btn">Cerca</button>
             </form>
         </div>
     </header>
@@ -21,9 +22,10 @@ export default {
     header {
         background-color: #000;
         .header-content {
-            width: $widthContent;
-            height: 120px;
+            max-width: $widthContent;
             margin: $marginConten;
+            height: 120px;
+            padding: 0 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -31,14 +33,28 @@ export default {
             img {
                 width: 175px;
             }
-            input {
+            input, .search-btn {
                 line-height: 2;
-                width: 250px;
-                padding: 0 7px;
                 border: none;
                 border-radius: 7px;
+                padding: 0 15px;
+            }
+            input {
+                width: 250px;
                 background-color: #303030;
                 color: white;
+            }
+            input:hover {
+                opacity: 0.8;
+            }
+            .search-btn {
+                background-color: #e50914;
+                color: #fff;
+                cursor: pointer;
+                margin-left: 7px;
+            }
+            .search-btn:hover {
+                opacity: 0.7;
             }
         }
     }
