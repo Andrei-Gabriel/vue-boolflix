@@ -18,7 +18,9 @@
                     </div>
                     <div>
                         <span class="voto">Voto: </span>
-                        <span>Lorem, ipsum dolor.</span>
+                        <!-- PROVVISORIO -->
+                        <span v-for="(elem, index) in stars[index]" :key="index"><i class="fas fa-star"></i></span>
+                        <!--  / PROVVISORIO -->
                     </div>
                     <div>
                         <span class="Descrizione">Descrizione: </span>
@@ -31,6 +33,8 @@
                 </div>
             </div>
         </div>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </main>
 </template>
 
@@ -40,8 +44,17 @@
 
         data() {
             let mouseHover = false;
+            // PROVVISORIO
+            let stars = [];
+            for(let i = 0; i < 10; i++){
+                stars[i] = (Math.floor(Math.random() * 5) + 1);
+            }
+            //  / PROVVISORIO
             return {
                 mouseHover,
+                // PROVVISORIO
+                stars,
+                //  / PROVVISORIO
             }
         },
         methods: {
@@ -88,11 +101,14 @@
                 padding: 25px 10px;
                 div {
                     margin-top: 7px;
-                    span {
-                    color: #fff;
-                    }
                     span:first-child {
                         font-weight: bold;
+                    }
+                    span {
+                        color: #fff;
+                        i {
+                            color: #ffbd00;
+                        }
                     }
                 }
             }
