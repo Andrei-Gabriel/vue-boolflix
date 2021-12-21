@@ -4,10 +4,9 @@
             <div class="card" 
                  v-for="(elem, index) in 10" 
                  :key="index"
-                 @mouseover="MouseHover(elem, index)" 
-                 @mouseleave="MouseNotHover(elem, index)">
+                >
 
-                <div class="card-content-true" v-if="mouseHover[index]">
+                <div class="card-content">
                     <div>
                         <span class="titolo">Titolo: </span>
                         <span>Lorem, ipsum dolor.</span>
@@ -19,8 +18,9 @@
                     <div>
                         <span class="voto">Voto: </span>
                         <!-- PROVVISORIO -->
-                        <span v-for="(elem, index, indexTwo) in 5" :key="index">
-                            <i :class="{yellowStar: howManyStars[index][indexTwo]}" class="fas fa-star"></i>
+                        <span v-for="i in 5" :key="i">
+                            <i v-if="i <= getFillStars(6)" class="fas fa-star yellowStar"></i>
+                            <i v-else class="far fa-star"></i>
                         </span>
                         <!--  / PROVVISORIO -->
                     </div>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-                <div class="card-content-false" v-else>
+                <div class="card-image">
                     <img src='https://picsum.photos/300/400'>
                 </div>
             </div>
@@ -43,40 +43,9 @@
 <script>
     export default {
         name: 'Main',
-
-        data() {
-            let mouseHover = [];
-            for(let i = 0; i < 10; i++){
-                mouseHover[i] = false;
-            }
-            // PROVVISORIO
-            let stars = [];
-            for(let i = 0; i < 10; i++){
-                stars[i] = (Math.floor(Math.random() * 5) + 1);
-            }
-
-            let howManyStars = [];
-            for(let i = 0; i < stars.length; i++){
-                howManyStars[i] = [];
-                for(let j = 0; j < stars[i]; j++){
-                    howManyStars[i][j] = true;
-                }
-            }
-            //  / PROVVISORIO
-            return {
-                mouseHover,
-                // PROVVISORIO
-                stars,
-                howManyStars,
-                //  / PROVVISORIO
-            }
-        },
         methods: {
-            MouseHover(mouseHover, index) {
-                this.mouseHover[index] = true
-            },
-            MouseNotHover(mouseHover, index) {
-                this.mouseHover[index] = false;
+            getFillStars(vote) {
+                return Math.ceil(vote / 2); 
             }
             // isMouseHover() {
             //     if(this.mouseHover == false){
@@ -102,13 +71,18 @@
         }
         // Stile .card
         .card {
+            position: relative;
             width: calc(100% / 4 - 40px);
             min-height: $cardHeight;
             max-height: $cardHeight;
             overflow-y: auto;
             border: 2px solid #b5b5b5;     
             margin: 30px 20px;
-            .card-content-true {
+            .card-content {
+                opacity: 0;
+                transition: 0.4s opacity;
+                position: absolute;
+                z-index: 1;
                 width: 100%;
                 height: 100%;
                 background-color: #000;
@@ -128,8 +102,11 @@
                         }
                     }
                 }
+                &:hover {
+                    opacity: 1;
+                }
             }
-            .card-content-false {
+            .card-image {
                 width: 100%;
                 height: 100%;
                 img {
