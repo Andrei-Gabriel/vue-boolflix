@@ -4,10 +4,10 @@
             <div class="card" 
                  v-for="(elem, index) in 10" 
                  :key="index"
-                 @mouseover="MouseHover(mouseHover)" 
-                 @mouseleave="MouseNotHover(mouseHover)">
+                 @mouseover="MouseHover(elem, index)" 
+                 @mouseleave="MouseNotHover(elem, index)">
 
-                <div class="card-content-true" v-if="mouseHover">
+                <div class="card-content-true" v-if="mouseHover[index]">
                     <div>
                         <span class="titolo">Titolo: </span>
                         <span>Lorem, ipsum dolor.</span>
@@ -19,7 +19,9 @@
                     <div>
                         <span class="voto">Voto: </span>
                         <!-- PROVVISORIO -->
-                        <span v-for="(elem, index) in stars[index]" :key="index"><i class="fas fa-star"></i></span>
+                        <span v-for="(elem, index, indexTwo) in 5" :key="index">
+                            <i :class="{yellowStar: howManyStars[index][indexTwo]}" class="fas fa-star"></i>
+                        </span>
                         <!--  / PROVVISORIO -->
                     </div>
                     <div>
@@ -43,26 +45,38 @@
         name: 'Main',
 
         data() {
-            let mouseHover = false;
+            let mouseHover = [];
+            for(let i = 0; i < 10; i++){
+                mouseHover[i] = false;
+            }
             // PROVVISORIO
             let stars = [];
             for(let i = 0; i < 10; i++){
                 stars[i] = (Math.floor(Math.random() * 5) + 1);
+            }
+
+            let howManyStars = [];
+            for(let i = 0; i < stars.length; i++){
+                howManyStars[i] = [];
+                for(let j = 0; j < stars[i]; j++){
+                    howManyStars[i][j] = true;
+                }
             }
             //  / PROVVISORIO
             return {
                 mouseHover,
                 // PROVVISORIO
                 stars,
+                howManyStars,
                 //  / PROVVISORIO
             }
         },
         methods: {
-            MouseHover() {
-                this.mouseHover = true;
+            MouseHover(mouseHover, index) {
+                this.mouseHover[index] = true
             },
-            MouseNotHover() {
-                this.mouseHover = false;
+            MouseNotHover(mouseHover, index) {
+                this.mouseHover[index] = false;
             }
             // isMouseHover() {
             //     if(this.mouseHover == false){
@@ -107,6 +121,9 @@
                     span {
                         color: #fff;
                         i {
+                            color: #434343;
+                        }
+                        .yellowStar {
                             color: #ffbd00;
                         }
                     }
