@@ -3,7 +3,7 @@
         <div class="card-content">
             <div>
                 <span class="titolo">Titolo: </span>
-                <span>Lorem, ipsum dolor.</span>
+                <span>{{film.title}}</span>
             </div>
             <div>
                 <span class="titolo-originale">Titolo originale: </span>
@@ -33,6 +33,9 @@
 <script>
     export default {
         name: 'Cards',
+        props: {
+            films: Array,
+        },
         methods: {
             getFillStars(vote) {
                 return Math.ceil(vote / 2); 

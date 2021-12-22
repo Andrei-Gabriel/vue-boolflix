@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @ricerca="ricercaaa"/>
-    <Main/>
+    <Main :films="films"/>
   </div>
 </template>
 
@@ -16,19 +16,27 @@ export default {
     Header,
     Main,
   },
+
+  data() {
+    return {
+      films: [],
+    }
+  },
+
   methods: {
     ricercaaa(payload) {
       axios.get("https://api.themoviedb.org/3/search/movie", {
         params: {
           api_key: '34d2bf6e1a79c2b489bb5e9909932946',
+          language: 'it-IT',
           query: payload,
         }
       })
       .then((response) => {
-        console.log(response.data.response);
+        this.films = response.data.results;
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error); 
       });
     }
   }

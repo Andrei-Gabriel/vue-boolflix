@@ -2,9 +2,9 @@
     <header>
         <div class="header-content">
             <img src="../assets/img/logo_large.png" alt="">
-            <form>
+            <form @submit.prevent="$emit('ricerca', inputQuery)">
                 <input type="text" placeholder="Cerca qualcosa da guardare" v-model="inputQuery">
-                <button class="search-btn" @click="$emit('ricerca', inputQuery)">Cerca</button>
+                <button class="search-btn">Cerca</button>
             </form>
         </div>
     </header>
