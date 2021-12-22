@@ -7,7 +7,7 @@
             </div>
             <div>
                 <span class="titolo-originale">Titolo originale: </span>
-                <span>Lorem, ipsum dolor.</span>
+                <span>{{film.original_title}}</span>
             </div>
             <div>
                 <span class="voto">Voto: </span>
@@ -20,7 +20,7 @@
             </div>
             <div>
                 <span class="Descrizione">Descrizione: </span>
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quisquam quae soluta consectetur ex beatae ea nam porro laborum cupiditate, cumque vitae alias excepturi libero? A eveniet necessitatibus quo odio!</span>
+                <span class="testo-descizione">{{film.overview}}</span>
             </div>
             </div>
 
@@ -34,7 +34,7 @@
     export default {
         name: 'Cards',
         props: {
-            films: Array,
+            film: Object,
         },
         methods: {
             getFillStars(vote) {
@@ -68,6 +68,10 @@
                 margin-top: 9px;
                 span:first-child {
                 font-weight: bold;
+                .testo-descizione {
+                    height: 30%;
+                    overflow-y: auto;
+                }
             }
                 span {
                     color: #fff;
