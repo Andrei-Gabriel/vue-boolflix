@@ -2,8 +2,8 @@
     <main>
         <div class="main-content">
             <div class="card-list">
-                <Cards :films="films"
-                    v-for="(film, index) in films" :key="index"
+                <Cards :film="film"
+                    v-for="(film, index) in film" :key="index"
                 />
             </div>
         </div>
@@ -21,7 +21,7 @@
             Cards,
         },
         props: {
-            films: Array,
+            film: Array,
         }
     }
 </script>
