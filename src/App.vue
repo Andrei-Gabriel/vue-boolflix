@@ -1,19 +1,36 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header @ricerca="ricercaaa"/>
     <Main/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
+  import axios from 'axios';
+  import Header from './components/Header.vue'
+  import Main from './components/Main.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
     Main,
+  },
+  methods: {
+    ricercaaa(payload) {
+      axios.get("https://api.themoviedb.org/3/search/movie", {
+        params: {
+          api_key: '34d2bf6e1a79c2b489bb5e9909932946',
+          query: payload,
+        }
+      })
+      .then((response) => {
+        console.log(response.data.response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 }
 </script>

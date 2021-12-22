@@ -3,17 +3,22 @@
         <div class="header-content">
             <img src="../assets/img/logo_large.png" alt="">
             <form>
-                <input type="text" placeholder="Cerca qualcosa da guardare">
-                <button class="search-btn">Cerca</button>
+                <input type="text" placeholder="Cerca qualcosa da guardare" v-model="inputQuery">
+                <button class="search-btn" @click="$emit('ricerca', inputQuery)">Cerca</button>
             </form>
         </div>
     </header>
 </template>
 
 <script>
-export default {
-    name: 'Header',
-}
+    export default {
+        name: 'Header',
+        data() {
+            return {
+                inputQuery: "",
+            }
+        }
+    }
 </script>
 
 <style lang="scss" scoped>
