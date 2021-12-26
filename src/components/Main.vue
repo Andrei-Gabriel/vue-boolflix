@@ -5,6 +5,9 @@
                 <Cards :film="film"
                     v-for="(film, index) in film" :key="index"
                 />
+                <CardSerie :serie="serie"
+                    v-for="(serie, indexS) in serie" :key="indexS"
+                />
             </div>
         </div>
 
@@ -14,14 +17,17 @@
 
 <script>
     import Cards from './elements/Cards.vue';
+    import CardSerie from './elements/CardSerie.vue';
 
     export default {
         name: 'Main',
         components: {
             Cards,
+            CardSerie,
         },
         props: {
             film: Array,
+            serie: Array,
         }
     }
 </script>
