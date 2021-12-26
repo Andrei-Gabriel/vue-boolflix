@@ -11,6 +11,14 @@
                     <span>{{film.original_title}}</span>
                 </div>
                 <div>
+                    <span class="lingua">Lingua: </span>
+                    <!-- Come gestire meglio le differenze tra MDBootstrap e l'API??? -->
+                    <i v-if="film.original_language == 'en'" class="flag flag-gb uk"></i>
+                    <i v-else-if="film.original_language == 'ja'" class="flag flag-jp"></i>
+                    <!-- Questo forse non copre tutti i casi -->
+                    <i v-else :class="`flag flag-${film.original_language}`"></i>
+                </div>
+                <div>
                     <!-- <span v-if="!film.vote_average">*VOTO NON DISPONIBILE*</span> -->
                     <span v-if="film.vote_average" class="voto">Voto: 
                         <span v-for="i in 5" :key="i">
@@ -51,6 +59,7 @@
 
 <style lang="scss" scoped>
     @import '../../assets/style/variables.scss';
+    @import '~mdb-ui-kit/css/mdb.min.css';
     
     span {
         pointer-events: none;

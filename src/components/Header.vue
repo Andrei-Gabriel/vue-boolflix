@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="header-content">
-            <img src="../assets/img/logo_large.png" alt="">
+            <h1>NETFLIX</h1>
             <form @submit.prevent="$emit('ricerca', inputQuery)">
                 <input type="text" placeholder="Cerca qualcosa da guardare" v-model="inputQuery">
                 <button class="search-btn">Cerca</button>
@@ -35,8 +35,9 @@
             align-items: center;
             justify-content: space-between;
             // Stile componenti di .header-content
-            img {
-                width: 175px;
+            h1 {
+                color: #e50914;
+                font-size: 50px;
             }
             input, .search-btn {
                 line-height: 2;
